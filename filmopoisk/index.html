@@ -1,0 +1,199 @@
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Фильмопоиск</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="bd.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <a href=""><img class="logo-img" src="./img/logo.png" alt="" /></a>
+      <form id="search-form" class="search" action="">
+        <input
+          id="search-field"
+          class="search-field"
+          type="text"
+          placeholder="Что посмотреть вечером?"
+        />
+        <button id="search-btn" class="btn search-btn">Искать!</button>
+      </form>
+      <div class="autohorize">
+        <a class="autohorize-false" href="./auth">ВОЙТИ</a>
+        <a class="autohorize-true hidden" id="username" href="./lk">login</a>
+        <img
+          src="./img/avatar.png"
+          class="autohorize-true avatar-img hidden"
+          alt=""
+        />
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="filtres">
+          <h2 class="filtres-title">Фильтры</h2>
+          <div class="filter-container">
+            <label class="filter-name" for="year">Год выпуска</label>
+            <select id="year" name="year" class="filter">
+              <option value=",number">Любой год</option>
+              <option value="2024,number">2024</option>
+              <option value="2023,number">2023</option>
+              <option value="2022,number">2022</option>
+              <option value="2021,number">2021</option>
+              <option value="2020,number">2020</option>
+              <option value="2019,number">2019</option>
+              <option value="2018,number">2018</option>
+              <option value="2017,number">2017</option>
+              <option value="2016,number">2016</option>
+              <option value="2015,number">2015</option>
+              <option value="2014,number">2014</option>
+              <option value="2013,number">2013</option>
+              <option value="2012,number">2012</option>
+              <option value="2011,number">2011</option>
+              <option value="2010,number">2010</option>
+              <option value="2009,number">2009</option>
+              <option value="2008,number">2008</option>
+              <option value="2007,number">2007</option>
+              <option value="2006,number">2006</option>
+              <option value="2005,number">2005</option>
+              <option value="2004,number">2004</option>
+              <option value="2003,number">2003</option>
+              <option value="2002,number">2002</option>
+              <option value="2001,number">2001</option>
+              <option value="2000,number">2000</option>
+              <option value="1990-1999,range">1990-1999</option>
+              <option value="1980-1989,range">1980-1989</option>
+              <option value="1970-1979,range">1970-1979</option>
+              <option value="1960-1969,range">1960-1969</option>
+              <option value="1950-1959,range">1950-1959</option>
+            </select>
+            <label class="filter-name" for="genres">Жанр</label>
+            <select id="genres" name="genres" class="filter">
+              <option value=",string">Любой жанр</option>
+              <option value="Комедия,string">Комедия</option>
+              <option value="Драма,string">Драма</option>
+              <option value="Криминал,string">Криминал</option>
+              <option value="Триллер,string">Триллер</option>
+              <option value="Фантастика,string">Фантастика</option>
+              <option value="Фэнтези,string">Фэнтези</option>
+              <option value="Приключения,string">Приключения</option>
+              <option value="Военный,string">Военный</option>
+              <option value="История,string">История</option>
+            </select>
+
+            <label class="filter-name" for="countries">Страна</label>
+            <select id="countries" name="countries" class="filter">
+              <option value=",string">Все страны</option>
+              <option value="США,string">США</option>
+              <option value="Россия,string">Россия</option>
+              <option value="СССР,string">СССР</option>
+
+              <option value="Франция,string">Франция</option>
+              <option value="Великобритания,string">Великобритания</option>
+              <option value="Канада,string">Канада</option>
+              <option value="Германия,string">Германия</option>
+              <option value="Новая Зеландия,string">Новая Зеландия</option>
+              <option value="Япония,string">Япония</option>
+              <option value="Мальта,string">Мальта</option>
+              <option value="Марокко,string">Марокко</option>
+              <option value="Мексика,string">Мексика</option>
+            </select>
+
+            <label class="filter-name" for="filmLengthMinute"
+              >Продолжительность</label
+            >
+            <select
+              id="filmLengthMinute"
+              name="filmLengthMinute"
+              class="filter"
+            >
+              <option value=",range">Любая продолжительность</option>
+              <option value="180-999,range">Более 3 часов</option>
+              <option value="150-179,range">2,5 - 3 часа</option>
+              <option value="120-149,range">2 - 2,5 часа</option>
+              <option value="90-119,range">1,5 - 2 часа</option>
+              <option value="60-89,range">1 - 1,5 часа</option>
+              <option value="30-59,range">30 минут - 1 час</option>
+              <option value="0-29,range">Менее 30 минут</option>
+            </select>
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                name="favorite"
+                id="favorite"
+                class="filter"
+              />
+              <label for="favorite">Избранное</label>
+            </div>
+          </div>
+          <h2 class="filtres-title">Сортировка</h2>
+          <div class="filter-container">
+            <label class="filter-name" for="sort">Сортировать по</label>
+            <select id="sort" name="sort">
+              <option value="" hidden>По умолчанию</option>
+              <option value="year,asc">Дате выхода - от старых к новым</option>
+              <option value="year,desc">Дате выхода - от новых к старым</option>
+
+              <option value="nameRu,asc">Названию - от А до Я</option>
+              <option value="nameRu,desc">Названию - от Я до А</option>
+
+              <option value="filmLength,desc">
+                Продолжительности - от длинных к коротким
+              </option>
+              <option value="filmLength,asc">
+                Продолжительности - от коротких к длинным
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="list-container">
+          <h1>Топ 60 фильмов</h1>
+          <div class="list">
+            <div class="list-item film">
+              <div class="film-content">
+                <img
+                  class="item-img"
+                  src="https://kinopoisk-ru.clstorage.net/pDl170082/9e5a43t-/1gsxiVuPMKsRqN9i1PxsXDqvd3klHvKoWiCl2q9PHdYqKZrTt2YB2HpsW5lH_KDz979Kao3M6URejPBDc07Pv1LPEf0e2sGK1P3ag7BsHNkK3tbswN-jHN9E5Auamqgk2SsZ8SBEYir4bp2NI9hBhkIKLm6NGQ0Uz03ENFD_3ohm2mCJaN2Av4JrPARljx6fK37RuPQdBtoaEdNI7r6cR5pKSZOjxgIrCGxd3GBbRaVj6_yPnsltZJvs9gfwSN_ItwvQOyi-gU2B-d1ntf1cXrrMITrWf6b6yVOj-H587narShtj8cfRKwmM3dxB-KRHURiejMxr7vYrbsfFI5t9u7e5YjqKPsDNQ0otR6Q8nN8bzCP6hMzmuArxsdoszsynmdlpYdH18ctbXS8NQil0xXBanw7viL4WO5-mRROZ7up1OHM4S_9jXsMIrHYnjz4--35TKJWvFGrKw_NYbw7stYhZSnJA1DF5y1xeXQAqJGayOL-OvWidFlvvl9fBGz-Yl4pwqZoOY_1B6b5HdD0t7gtusIq3vib7STPwCQ3PHYVLqlrT4YYyikmfL6_QecWmQ8pNn5_anHV6vseXAhuP2yaZwWr5zUK-kxh-NBYtf4767uAZh83ki0iiknq-XG_HCvm5U6LGIzjafvwu4GtHR2M5jh89up13S43XVJBafCo1KyE7W-zwD6MYj8aXPUyeSJ3jS0R-NXiYkoOa372sdevIexHilkJIGXxNvnC519RQ-vy9zoqftqjOlBVyC5zIpxgTKqj_gT0wWPzFZV89PupOs6tFbZb6ezJxuk1t3hZqSStD4IaxSKq-L3yjiFcG4noOPMz7_LUZfbUUAHjO-yW7MjrLzEKvoHpPVrUsTm65rcLKhF3U-ogjQYgvHT5VSugK0dOkE1hI7K1fwfnFBYGZb_zsmYwHOL70N3CZn9ilOPAJuO2BX3HJ3wanru7vKZyByKX-pdhKMxN6PJyOpfur25ORpsO4Ks1PzSOKNYfB-l2vHHts9rtc1wfTe82pRNoQCNnNsq1TCO0HZ1zc7quu4pkGHrZqiNHzuR1vLzQ4O5rgI-eSaqpMvU0gywb2QLhuHU-L_sdKvMWXE8vvKSY6Ibj6DnOu0npsJrX_XgyK7FL5Z_yUOWjx85lfr71VesmasgEHwlgKbI9eAAt1xcGLzOy_Cv5mqW43xoO4TtpEO2HZW-4jXdO7DxRnf-58it_SGJecJxqLEnMaDHystWj7y0NA9ZKqGR9-7oG6Zbew2u-e7ss-N_j99HWwWq95prrTyzqPsx1Run1Wdy3v_Ngf4MkUzyV4i1FiCi39vUVqeSihIUbzWBkcrj0zylVFwui9P37I3YSrzoe2oFv9yhWJQelpf1DdQHp-pXR9XG34nrMo9c10uHjCQUhdf51Ea6gqYIP2c-t7HW19M5u2RGLbn-1_OT7XGKyHVRGrPRknmOMIKNzQ3MNoHVdHnM892n7CqpVtVXtIU2JoTv-Pp2mZyaMQ1mMauU8NvfDJ1gRBi87cvUvO9DtOBCciKk1rttkD-EnvQY1BuPxlZnyM7RouAUmX7qTY6AMR6t0OjUSKylqTw2SjGHgM7V1AyBQVUxoMb_6I3UTrztWHsbhdahc5M8qK_IKeUxqOBSd9D587rAE6pQ_U-EqRs7tvXa23GvsogZKGcTn7Hq8-w9lllXEInc0s6J7GCb92RtCaz8s2i2PriA0yvLJojtbV7p-_SHzhuuQtJUupERF5bQzfx0jKmcJh59GbWLzNviLYd4ezqf_Mv5v9hDl-hFSiqL14xxpjSGl8Ijyji-7Upkxtv-rtoxuGTPS7GJMh2Rydf4e4iUtigZUyKrjtTZ8w-1Wmg8icDd-oHqTb7-RX8FpfapTIs2j7fMEP4YnMlgYPDh44foG49ZyFOHryoUl_PK82q5mKkmOmQSiqvK2uMygnVEAKLs6O2222GXyGZZE5n7sWKUNa2o0QnoJ7_PVVHpxf29yg-pWvRJobUYConoz9BZvoiHAC5cN6-y7cfcHbJyYQ64z93mtfZ0setaXTq7zLZmnxaQoOkw2Tu74nRV1f_ptewwmmzrQZeONhat0tnwVI66iCoJezqQpvT8xiiZRGgGi_7R8LXzQLz3UHInstW3RowcibzQMOYen9FhTOrkzbv-C51N9Hy4iSk5ivrHx0uAu5w1MHk_gafnxPwoq0FtDL_O7vO94FO-wHRZHa_8sWmQLoKP1SHxPK7IUFfD_M-uzhqvcOJqrLMWIKfezvVwtbe4PB59PZWZ9dLOMLhUVx6L_vLtiOdPuN1_TxmE97VGvDWbssMd8wWHw1VswObgu-wphVH5V5qKOAWp6PPIdqG2vyoQYxexos3d4yebeUMhp9H-6IjAZaD-dGAYp8qNW4IAjJriMcsvptN0cOHd5LffOKhM_XyWjw45pvjNy1ikm40DMEUanora78oFv3pCKo3j6f-MxWmRynhPN4nziU6SPYusxhHzAaD0ZlT2-OqN7Te4fuFgiKQPB6Te7cdwmKaLKCJnHL-2-eHEA4VcbgSW3tbZv-FUoOJ-VSGM-qZlvwmFgNML3Dmk8Ul09NvtgNYTi332Q4ayFAqj0ejaRaKdvDwYfQWxmMjQ3A6xQGEOvPPg277OcZf7R0w7l-ubd5IIk5fiN-0ujtxCXuTa5pXiD4R2zkuvsx89kfbl2GeagZQcHVootZDo-uk-pGBKPrnqyvmh42Sb1mRPBbropmSWIbCc9SDzOJ3vSlLR09af9jKYbuFJhaUYMrnW3OFCqJaTFQ9NAICW6tjqOItwbT-kxsrUgcdissZ3UymFzIl1pg6QtOYLxgWl_XF97_jCiN4Mqm71d5SjFxKDxfjFS52HvzgKRTqii9Xk9R-Cel8tn97wy5TRTILdfFUplfm3WKg0sYPuFuUBufVpTtTM8a3_CZ58yWGGlgcBhO7z11yDlLolFVsGv67i3_MslnhGM6ne8duQ7Gye5lQ"
+                  alt=""
+                />
+                <div class="film-info">
+                  <a href="" class="film-title">Пабег из шаушенуа</a>
+                  <div class="film-info-row">
+                    <p>Год выпуска: <span class="year">2020</span></p>
+                    <p>Жанр: <span class="genre">Драма</span></p>
+                    <p>
+                      Продолжительность: <span class="duration-hour">1</span> час
+                      <span class="duration-minute">52</span> минут
+                    </p>
+                    <p>Страна: <span class="genre">США</span></p>
+                  </div>
+                </div>
+              </div>
+              <div class="favorite">
+                <button class="favorite-btn">
+                  <img src="../img/favorite-false.png" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about">
+        <div class="about-row">
+          <div>
+            <h3>О разработчике</h3>
+            <p>Андреев Евгений, andreev2004010904@gmail.com</p>
+            <div class="about-ava">
+            <img src="../img/ava.jpg" alt="" />
+            </div>
+          </div>
+          <img src="../img/logo full.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
